@@ -1,5 +1,5 @@
 # Bank-files-management-system
-This is a bank management system which allows a total of 5 features. They are:
+This is a bank management system in C language which allows a total of 5 features. They are:
 1.Create account
 2.Deposit money
 3.Withdraw money 
