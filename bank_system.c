@@ -117,18 +117,23 @@ void withdraw_money(){
     printf("Enter amount to withdraw: ");
     scanf("%f",&money);
     while(fread(&acc,sizeof(acc),1,file)){
-        if (acc.account_number==acc_no && acc.balance>money){
+        if (acc.account_number==acc_no){
+            if ( acc.balance>money)
+            {
             acc.balance -= money;
             fseek(file,-sizeof(acc),SEEK_CUR);
             fwrite(&acc,sizeof(acc),1,file);
             printf("\nSuccesfully withdrawn %.2f. New balance is %.2f.\n ",money,acc.balance);
             fclose(file);
             return;
+            }
+            else if (acc.balance<money)
+                {
+                printf("Cannot withdraw you have just %.2f in balance.",acc.balance);
+                return;
+                }
         }
-        else if (acc.balance<money)
-        {
-        printf("Cannot withdraw you have just %d in balance.",acc.balance);
-        }
+        
     printf("\nNo account with account number %d. Amount withdrawl failed! \n",acc_no);
 }
 }
